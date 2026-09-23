@@ -1,0 +1,31 @@
+:root{--pw:400px;--ph:566px}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{display:flex;flex-direction:column;overflow:hidden;color:#fff;
+  font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  background:radial-gradient(ellipse at 50% 35%,#1b7fd0 0%,#0b4f9c 45%,#06264f 100%)}
+header{height:64px;display:flex;align-items:center;padding:0 24px;flex:none}
+header img{height:36px;width:auto}
+main{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.book{position:relative;width:calc(var(--pw)*2);height:var(--ph);perspective:2600px;touch-action:none;cursor:grab;user-select:none}
+.book:active{cursor:grabbing}
+.page,.leaf{position:absolute;top:0;width:var(--pw);height:var(--ph)}
+.page{z-index:1;background:#fff;box-shadow:0 18px 40px rgba(0,10,40,.45)}
+.page.left{left:0}
+.page.right{left:var(--pw)}
+.leaf{left:var(--pw);transform-origin:left center;transform-style:preserve-3d;
+  transition:transform .9s cubic-bezier(.645,.045,.355,1)}
+.leaf.drag{transition:none}
+.face{position:absolute;inset:0;overflow:hidden;background:#fff;backface-visibility:hidden}
+.face.back{transform:rotateY(180deg)}
+.face img,.page img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.face::after,.page::after{content:"";position:absolute;inset:0;pointer-events:none}
+.face.front::after,.page.right::after{background:linear-gradient(to right,rgba(0,0,0,.28),transparent 7%)}
+.face.back::after,.page.left::after{background:linear-gradient(to left,rgba(0,0,0,.28),transparent 7%)}
+footer{height:64px;flex:none;display:flex;align-items:center;justify-content:center;gap:14px}
+footer button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.45);
+  background:rgba(255,255,255,.12);color:#fff;font-size:22px;line-height:1;cursor:pointer;transition:background .2s}
+footer button:hover{background:rgba(255,255,255,.28)}
+footer button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+#counter{min-width:150px;text-align:center;font-size:15px;letter-spacing:.02em}
+@media (prefers-reduced-motion:reduce){.leaf{transition-duration:.01s}}
