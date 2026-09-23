@@ -110,7 +110,7 @@ document.addEventListener("keydown", e => {
 let ratio = 0.707; // A4 até a imagem carregar
 function fit() {
   const m = document.querySelector("main");
-  const ph = Math.min(m.clientHeight * 0.94, (m.clientWidth * 0.96) / 2 / ratio);
+  const ph = Math.min(m.clientHeight, m.clientWidth / 2 / ratio);
   root.style.setProperty("--ph", ph + "px");
   root.style.setProperty("--pw", ph * ratio + "px");
 }
